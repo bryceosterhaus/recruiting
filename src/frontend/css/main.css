@@ -397,3 +397,28 @@ h3 {
 .contact-me {
 	margin-top: 20px;
 }
+
+/* ---------- Success ---------- */
+
+.success-page {
+	background: #FFF;
+	bottom: 0;
+	height: 100%;
+	left: 0;
+	padding: 96px;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	top: 0;
+
+	.message {
+		font-size: 48px;
+		line-height: 1.5em;
+		margin: 0 auto;
+		max-width: 960px;
+	}
+
+	.success-image {
+		height: 200px;
+	}	
+}

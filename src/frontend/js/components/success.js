@@ -26,8 +26,18 @@ module.exports = React.createClass({
 		}
 
 		return (
-			<div>
-				Thanks! {message}
+			<div className="success-page">
+				<div className="message row">
+					Thanks for participating! 
+					<br />
+					{message}
+				</div>
+				<div className="row">
+					<img className="success-image" src="/documents/checkmark.gif" />
+				</div>
+				<div className="message row">
+					Please talk to a Liferay person and ask for your free t-shirt.
+				</div>
 			</div>
 		);
 	}
