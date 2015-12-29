@@ -87,8 +87,10 @@ module.exports = function(router, io) {
 												function(err, data) {
 													var city = data[Math.floor(Math.random()*data.length)];
 
-													db.missionsLocation = city.full;
-													db.geoPoints = [city.latitude, city.longitude];
+													if (city) {
+														db.missionsLocation = city.full;
+														db.geoPoints = [city.latitude, city.longitude];
+													}
 
 														callback(null, 2);
 												}
