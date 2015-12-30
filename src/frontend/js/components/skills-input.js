@@ -40,6 +40,8 @@ module.exports = React.createClass({
 							);
 						}
 
+						instance._acItems = data;
+
 						response(data);
 					},
 					error: function(err) {
@@ -57,14 +59,7 @@ module.exports = React.createClass({
 				select: function(event, ui) {
 					var item = ui.item;
 
-					if (item.newSkill) {
-						instance.postNewSkill(item);
-					}
-					else {
-						instance.addSkill(item);
-					}
-
-					$(this).val('');
+					instance.addSkill(item);
 
 					return false;
 				}
@@ -85,11 +80,18 @@ module.exports = React.createClass({
 	},
 
 	addSkill: function(skill) {
-		var recruit = this.state.recruit;
+		if (skill.newSkill) {
+			this.postNewSkill(skill)
+		}
+		else {
+			var recruit = this.state.recruit;
 
-		recruit.skills.push(skill);
+			recruit.skills.push(skill);
 
-		this.setState({recruit: recruit});
+			this.setState({recruit: recruit});
+		}
+
+		$(this.refs.skills).val('');
 	},
 
 	removeSkill: function(event) {
@@ -130,6 +132,20 @@ module.exports = React.createClass({
 		);
 	},
 
+	onChange: function(event) {
+		var value = $(event.currentTarget).val();
+
+		if (value && this._acItems) {
+			var valueLength = value.length;
+
+			var lastChar = value.charAt(valueLength - 1);
+
+			if (lastChar && lastChar === ',') {
+				this.addSkill(this._acItems[0]);
+			}
+		}
+	},
+
 	onInputBlur: function(event) {
 		$(event.currentTarget).val('');
 	},
@@ -159,7 +175,7 @@ module.exports = React.createClass({
 						}
 					)
 				}
-				<input ref="skills" type="text" className="skills-input" onBlur={this.onInputBlur} placeholder="HTML, Java, Photoshop, etc" />
+				<input ref="skills" type="text" className="skills-input" onChange={this.onChange} onBlur={this.onInputBlur} placeholder="HTML, Java, Photoshop, etc" />
 				</div>
 			</fieldset>
 		);
