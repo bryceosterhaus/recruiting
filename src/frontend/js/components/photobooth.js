@@ -174,7 +174,7 @@ module.exports = React.createClass({
 
 			return (
 				<fieldset className="form-group photo-booth">
-					<h3>Take a picture!</h3>
+					<h3>Take a picture! (Required)</h3>
 
 					<div className="video-container">
 						{countdown}

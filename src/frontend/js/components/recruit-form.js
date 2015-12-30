@@ -94,7 +94,7 @@ module.exports = React.createClass({
 
 		var state = instance.context.store.getState();
 
-		if (state.firstName && state.lastName && state.email) {
+		if (state.firstName && state.lastName && state.email && state.profilePicture) {
 			$.ajax(
 				$.extend(
 					config,
@@ -164,7 +164,7 @@ module.exports = React.createClass({
 		if (this.state.alert) {
 			alert = (
 				<div className="drop-down-alert">
-					First name, last name, and email are required.
+					First name, last name, photo, and email are required.
 
 					<span className="close" aria-hidden="true" onClick={this.closeAlert}>&times;</span>
 				</div>
